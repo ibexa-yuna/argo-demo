@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wordpress-demo
+  namespace: argo
+spec:
+  project: demo
+  source:
+    repoURL: registry-1.docker.io/bitnamicharts
+    chart: wordpress
+    targetRevision: 22.4.20
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd-demo
+#  syncPolicy:
+#    automated:
+#      prune: true
+#      selfHeal: true
